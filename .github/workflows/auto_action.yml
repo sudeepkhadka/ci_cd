@@ -33,4 +33,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Have a great day!
-          echo test, and deploy your project.
+          echo "Action Complete!"
