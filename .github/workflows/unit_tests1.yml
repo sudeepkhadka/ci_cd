@@ -1,0 +1,16 @@
+on:
+  push
+
+jobs:
+  test:  
+    runs-on: ubuntu-latest.
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: yarn    
+    - uses: actions/download-artifact@v2
+      with:
+        name: assets
+        path: dist
+    - name: Run Tests
+      run: yarn test
