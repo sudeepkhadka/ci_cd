@@ -1,0 +1,21 @@
+name: Unit Tests
+
+on:
+  # the 1st condition
+  workflow_run:                             # triggers when "build" runs and completes  
+    workflows: ["CI-CD"]
+    types:
+      - completed
+
+jobs:                                       # create job called "test" to perform Unit Tests 
+  test:  
+    runs-on: ubuntu-latest.                 # this job will run on the latest version of Ubuntu
+    steps:                                  # list of steps that need to be taken when Unit Tests is triggered 
+    - uses: actions/checkout@v3             # check out code from repository
+    - name: Install dependencies            # install all dependencies needed for Unit Tests (ex. Jest) 
+      run: npx yarn    
+    - uses: actions/download-artifact@v3    # download compiled code from build and make it available for Unit Tests 
+      with:
+        path: dist
+    - name: Run Tests                       # run Unit Tests using Jest
+      run: npx yarn test
