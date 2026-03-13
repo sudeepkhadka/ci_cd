@@ -34,7 +34,7 @@ jobs:
         run: |
           echo Have a great day!
           echo "Action Complete!"
-    deploy:
+  deploy:
     needs: build
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
